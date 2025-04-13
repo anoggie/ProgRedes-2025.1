@@ -3,4 +3,4 @@ Este repositório tem como objetivo guardar todos os exercícios feitos pela dup
 
 📂 ProgRedes-2025.1  
 L 📂 CIDR_calc | Calculadora de sub-rede  
-L 📂 Em breve... | ...
+L 📂 Termooo | Jogo Termo feito em Python
