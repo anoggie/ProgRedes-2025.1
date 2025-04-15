@@ -6,13 +6,13 @@ def ler_arquivo(path):
     uma lista de palavras válidas'''
 
     try:
-        f = open(path, "r", encoding="utf-8")
+        arquivo = open(path, "r", encoding="utf-8")
         palavras = []
-        for linha in f:
+        for linha in arquivo:
             palavra = linha.strip().upper()
             if 5 <= len(palavra) <= 8:
                 palavras.append(palavra)
-        f.close()
+        arquivo.close()
         return palavras
     
     except FileNotFoundError:
