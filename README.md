@@ -5,4 +5,5 @@ Este repositório tem como objetivo guardar todos os exercícios feitos pela dup
 L 📂 CIDR_calc | Calculadora de sub-rede  
 L 📂 Termooo | Jogo Termo feito em Python  
 L 📂 XOR_Encrypter | Criptografador de texto utilizando operação XOR  
+L 📂 Nonce_finder | Mineador(?)  
 L 📂 TCPdump_Analyzer | Analisador de tcpdump
