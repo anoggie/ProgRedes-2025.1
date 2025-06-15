@@ -6,4 +6,5 @@ L 📂 CIDR_calc | Calculadora de sub-rede
 L 📂 Termooo | Jogo Termo feito em Python  
 L 📂 XOR_Encrypter | Criptografador de texto utilizando operação XOR  
 L 📂 Nonce_finder | Mineador(?)  
-L 📂 TCPdump_Analyzer | Analisador de tcpdump
+L 📂 TCPdump_Analyzer | Analisador de tcpdump  
+L 📂 RawFetch | Analisador de URL e downloader via socket
