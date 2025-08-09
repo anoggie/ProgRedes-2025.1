@@ -1,0 +1,686 @@
+{
+  "arquivos": {
+    "ls": {
+      "significado": "List directory contents",
+      "descricao": "Lista arquivos e diretórios. Por padrão mostra os arquivos não ocultos do diretório atual.",
+      "parametros": {
+        "-l": "Formato longo (mostra permissões, dono, tamanho, etc.)",
+        "-a": "Mostra todos os arquivos, incluindo ocultos (que começam com .)",
+        "-h": "Mostra tamanhos em formato legível (KB, MB, GB)",
+        "-t": "Ordena por data de modificação (mais recentes primeiro)"
+      },
+      "exemplo": "ls -lah /home  # Lista todos os arquivos em formato detalhado e legível"
+    },
+    "cd": {
+      "significado": "Change directory",
+      "descricao": "Muda o diretório de trabalho atual. Sem argumentos, vai para o diretório home.",
+      "parametros": {},
+      "exemplo": "cd /var/log  # Entra no diretório de logs\ncd ~  # Vai para o diretório home\ncd ..  # Volta um nível"
+    },
+    "cp": {
+      "significado": "Copy files and directories",
+      "descricao": "Copia arquivos ou diretórios para um novo local.",
+      "parametros": {
+        "-r": "Copia diretórios recursivamente",
+        "-v": "Modo verboso (mostra o que está sendo copiado)",
+        "-i": "Pede confirmação antes de sobrescrever"
+      },
+      "exemplo": "cp arquivo.txt backup/  # Copia o arquivo\ncp -r pasta/ backup/  # Copia a pasta e todo seu conteúdo"
+    },
+    "mv": {
+      "significado": "Move (rename) files",
+      "descricao": "Move arquivos ou diretórios para outro local ou renomeia arquivos.",
+      "parametros": {
+        "-v": "Modo verboso",
+        "-i": "Pede confirmação antes de sobrescrever"
+      },
+      "exemplo": "mv arquivo.txt novo_nome.txt  # Renomeia\nmv arquivo.txt ~/Documents/  # Move o arquivo"
+    },
+    "rm": {
+      "significado": "Remove files or directories",
+      "descricao": "Remove arquivos ou diretórios. CUIDADO: Arquivos removidos não vão para a lixeira!",
+      "parametros": {
+        "-r": "Remove diretórios e seu conteúdo recursivamente",
+        "-f": "Força a remoção sem perguntar",
+        "-i": "Pede confirmação para cada arquivo"
+      },
+      "exemplo": "rm arquivo.txt  # Remove arquivo\nrm -rf pasta/  # Remove pasta e todo conteúdo (perigoso!)"
+    },
+    "mkdir": {
+      "significado": "Make directories",
+      "descricao": "Cria novos diretórios.",
+      "parametros": {
+        "-p": "Cria diretórios pais se não existirem",
+        "-v": "Mostra cada diretório criado"
+      },
+      "exemplo": "mkdir nova_pasta\nmkdir -p projetos/2023/linux  # Cria toda a estrutura de diretórios"
+    },
+    "find": {
+      "significado": "Search for files in a directory hierarchy",
+      "descricao": "Busca arquivos e diretórios com base em diversos critérios como nome, tamanho, data, etc.",
+      "parametros": {
+        "-name": "Busca por nome (aceita wildcards como *)",
+        "-type": "Tipo (f para arquivo, d para diretório)",
+        "-size": "Tamanho (+50M para arquivos maiores que 50MB)",
+        "-mtime": "Modificado há n dias (ex: -7 para última semana)"
+      },
+      "exemplo": "find /home -name \"*.txt\"  # Busca todos .txt no /home\nfind / -type f -size +100M  # Arquivos >100MB no sistema"
+    },
+    "grep": {
+      "significado": "Global regular expression print",
+      "descricao": "Busca padrões em arquivos ou na saída de outros comandos. Extremamente útil para filtrar conteúdo.",
+      "parametros": {
+        "-i": "Case insensitive (ignora maiúsculas/minúsculas)",
+        "-r": "Busca recursiva em diretórios",
+        "-v": "Inverte a busca (mostra linhas que NÃO contêm o padrão)",
+        "-n": "Mostra número da linha"
+      },
+      "exemplo": "grep \"error\" log.txt  # Busca 'error' no arquivo\nps aux | grep nginx  # Filtra processos do nginx"
+    },
+    "head": {
+      "significado": "Output the first part of files",
+      "descricao": "Mostra as primeiras linhas de um arquivo.",
+      "parametros": {
+        "-n": "Número de linhas a mostrar"
+      },
+      "exemplo": "head -n 10 arquivo.log  # Mostra as 10 primeiras linhas"
+    },
+    "tail": {
+      "significado": "Output the last part of files",
+      "descricao": "Mostra as últimas linhas de um arquivo, útil para acompanhar logs.",
+      "parametros": {
+        "-n": "Número de linhas a mostrar",
+        "-f": "Segue o arquivo em tempo real (modo 'follow')"
+      },
+      "exemplo": "tail -f /var/log/syslog  # Mostra e acompanha o log em tempo real"
+    },
+    "stat": {
+      "significado": "Display file or filesystem status",
+      "descricao": "Mostra detalhes sobre arquivos, como permissões, datas e tamanho.",
+      "parametros": {},
+      "exemplo": "stat arquivo.txt"
+    },
+    "file": {
+      "significado": "Determine file type",
+      "descricao": "Mostra o tipo do arquivo, como texto, executável, imagem, etc.",
+      "parametros": {},
+      "exemplo": "file script.sh"
+    },
+    "chmod": {
+      "significado": "Change file permissions",
+      "descricao": "Modifica permissões de arquivos e diretórios.",
+      "parametros": {
+        "u/g/o": "Usuário, grupo, outros",
+        "+/-/=": "Adicionar, remover ou definir permissões",
+        "r/w/x": "Permissões de leitura, escrita, execução"
+      },
+      "exemplo": "chmod +x script.sh  # Dá permissão de execução"
+    },
+    "chown": {
+      "significado": "Change file owner and group",
+      "descricao": "Altera dono e grupo de arquivos ou diretórios.",
+      "parametros": {},
+      "exemplo": "chown usuario:grupo arquivo.txt"
+    },
+    "ln": {
+      "significado": "Create links between files",
+      "descricao": "Cria links simbólicos ou hard links.",
+      "parametros": {
+        "-s": "Cria link simbólico"
+      },
+      "exemplo": "ln -s /caminho/original link_simbólico"
+    },
+    "du": {
+      "significado": "Estimate file space usage",
+      "descricao": "Mostra o espaço usado por arquivos ou diretórios.",
+      "parametros": {
+        "-h": "Formato legível",
+        "-s": "Resumo (total por diretório)"
+      },
+      "exemplo": "du -sh /home/usuario"
+    },
+    "basename": {
+      "significado": "Strip directory and suffix from file name",
+      "descricao": "Retorna o nome do arquivo sem o caminho.",
+      "parametros": {},
+      "exemplo": "basename /home/usuario/arquivo.txt  # Retorna arquivo.txt"
+    },
+    "dirname": {
+      "significado": "Strip last component from file name",
+      "descricao": "Retorna o caminho do diretório sem o nome do arquivo.",
+      "parametros": {},
+      "exemplo": "dirname /home/usuario/arquivo.txt  # Retorna /home/usuario"
+    },
+    "touch": {
+      "significado": "Create empty file or update timestamps",
+      "descricao": "Cria arquivo vazio ou atualiza a data de modificação/acesso.",
+      "parametros": {},
+      "exemplo": "touch novo_arquivo.txt"
+    },
+    "split": {
+      "significado": "Split a file into pieces",
+      "descricao": "Divide um arquivo em partes menores.",
+      "parametros": {
+        "-l": "Número de linhas por parte",
+        "-b": "Tamanho em bytes por parte"
+      },
+      "exemplo": "split -l 1000 arquivo_grande.txt parte_  # Divide em arquivos com 1000 linhas"
+    }
+  },
+  "redes": {
+    "ping": {
+      "significado": "Send ICMP ECHO_REQUEST to network hosts",
+      "descricao": "Testa conectividade com um host enviando pacotes ICMP. Útil para verificar se um servidor está respondendo.",
+      "parametros": {
+        "-c": "Número de pacotes a enviar (ex: -c 4)",
+        "-i": "Intervalo entre pacotes em segundos",
+        "-w": "Tempo máximo de espera em segundos"
+      },
+      "exemplo": "ping google.com\nping -c 4 8.8.8.8  # Envia 4 pacotes para o DNS do Google"
+    },
+    "ssh": {
+      "significado": "OpenSSH SSH client (remote login program)",
+      "descricao": "Conecta a um servidor remoto de forma segura usando criptografia. Padrão para administração remota de servidores.",
+      "parametros": {
+        "-p": "Porta (padrão é 22)",
+        "-i": "Especifica arquivo de chave privada",
+        "-X": "Habilita forwarding X11 (para GUI remota)"
+      },
+      "exemplo": "ssh usuario@servidor.com\nssh -p 2222 -i ~/.ssh/chave.pem admin@192.168.1.100"
+    },
+    "curl": {
+      "significado": "Transfer a URL",
+      "descricao": "Ferramenta para transferir dados de/para servidores usando diversos protocolos (HTTP, FTP, etc.). Muito usado para testar APIs e baixar arquivos.",
+      "parametros": {
+        "-o": "Salva saída em arquivo",
+        "-O": "Salva com o nome original do arquivo",
+        "-L": "Seguir redirecionamentos",
+        "-H": "Adiciona header (ex: -H \"Content-Type: application/json\")"
+      },
+      "exemplo": "curl -O https://exemplo.com/arquivo.zip\ncurl -X POST -d '{\"chave\":\"valor\"}' http://api.local"
+    },
+    "wget": {
+      "significado": "The non-interactive network downloader",
+      "descricao": "Baixa arquivos da web de forma não interativa. Útil para scripts e downloads pesados.",
+      "parametros": {
+        "-c": "Continua download interrompido",
+        "-q": "Modo silencioso",
+        "-r": "Download recursivo",
+        "-O": "Especifica nome do arquivo de saída"
+      },
+      "exemplo": "wget https://exemplo.com/large-file.iso\nwget -c http://mirror.iso/ubuntu.iso  # Continua download"
+    },
+    "ifconfig": {
+      "significado": "Configure network interfaces",
+      "descricao": "Mostra e configura interfaces de rede (substituído pelo ip em sistemas modernos).",
+      "parametros": {},
+      "exemplo": "ifconfig eth0 192.168.1.10 netmask 255.255.255.0 up"
+    },
+    "ip": {
+      "significado": "Show/manipulate routing, devices, policy routing and tunnels",
+      "descricao": "Comando moderno para configuração de rede.",
+      "parametros": {
+        "addr": "Mostra ou configura endereços IP",
+        "link": "Mostra ou configura interfaces de rede",
+        "route": "Mostra ou configura rotas"
+      },
+      "exemplo": "ip addr show\nip link set eth0 up\nip route add default via 192.168.1.1"
+    },
+    "netstat": {
+      "significado": "Network statistics",
+      "descricao": "Mostra conexões de rede, tabelas de roteamento e estatísticas.",
+      "parametros": {
+        "-t": "TCP",
+        "-u": "UDP",
+        "-l": "Escutando (listening)",
+        "-n": "Mostrar números (não resolver nomes)"
+      },
+      "exemplo": "netstat -tuln  # Conexões TCP e UDP escutando"
+    },
+    "ss": {
+      "significado": "Socket statistics",
+      "descricao": "Substituto moderno do netstat para conexões de rede.",
+      "parametros": {
+        "-t": "TCP",
+        "-u": "UDP",
+        "-l": "Escutando",
+        "-n": "Não resolver nomes"
+      },
+      "exemplo": "ss -tuln"
+    },
+    "traceroute": {
+      "significado": "Print the route packets take to network host",
+      "descricao": "Mostra o caminho e latência até um host remoto.",
+      "parametros": {
+        "-m": "TTL máximo",
+        "-p": "Porta"
+      },
+      "exemplo": "traceroute google.com"
+    },
+    "dig": {
+      "significado": "DNS lookup utility",
+      "descricao": "Consulta servidores DNS para resolver nomes de domínio.",
+      "parametros": {
+        "+short": "Mostra resultado curto",
+        "@server": "Consulta servidor DNS específico"
+      },
+      "exemplo": "dig google.com\n dig +short google.com"
+    },
+    "host": {
+      "significado": "DNS lookup utility",
+      "descricao": "Consulta registros DNS.",
+      "parametros": {},
+      "exemplo": "host google.com"
+    },
+    "arp": {
+      "significado": "Manipulate the system ARP cache",
+      "descricao": "Mostra e modifica entradas ARP.",
+      "parametros": {
+        "-a": "Mostra tabela ARP"
+      },
+      "exemplo": "arp -a"
+    },
+    "tcpdump": {
+      "significado": "Capture network packets",
+      "descricao": "Captura e exibe pacotes da rede, usado para análise avançada.",
+      "parametros": {
+        "-i": "Interface para capturar",
+        "-c": "Número de pacotes",
+        "-w": "Grava em arquivo"
+      },
+      "exemplo": "tcpdump -i eth0 -c 100 -w captura.pcap"
+    },
+    "nmap": {
+      "significado": "Network scanner",
+      "descricao": "Escaneia portas e serviços em hosts da rede.",
+      "parametros": {
+        "-sS": "Scan SYN (stealth scan)",
+        "-p": "Porta(s) a escanear"
+      },
+      "exemplo": "nmap -sS 192.168.1.1\nnmap -p 22,80 192.168.1.1"
+    },
+    "hostname": {
+      "significado": "Show or set the system hostname",
+      "descricao": "Mostra ou altera o nome do host do sistema.",
+      "parametros": {},
+      "exemplo": "hostname\nhostname novo-host"
+    },
+    "route": {
+      "significado": "Show/manipulate the IP routing table",
+      "descricao": "Mostra ou altera rotas IP.",
+      "parametros": {},
+      "exemplo": "route -n"
+    },
+    "iptables": {
+      "significado": "Configure Linux kernel firewall",
+      "descricao": "Ferramenta para configuração do firewall do Linux.",
+      "parametros": {
+        "-L": "Lista regras",
+        "-A": "Adiciona regra",
+        "-D": "Deleta regra"
+      },
+      "exemplo": "iptables -L\niptables -A INPUT -p tcp --dport 22 -j ACCEPT"
+    },
+    "nmcli": {
+      "significado": "NetworkManager command-line tool",
+      "descricao": "Gerencia conexões de rede via NetworkManager.",
+      "parametros": {
+        "device": "Gerencia dispositivos",
+        "connection": "Gerencia conexões"
+      },
+      "exemplo": "nmcli device status\nnmcli connection up id 'WiFi da casa'"
+    }
+  },
+  "sistema": {
+    "top": {
+      "significado": "Display Linux processes",
+      "descricao": "Mostra informações em tempo real sobre processos do sistema, uso de CPU, memória e outros recursos.",
+      "parametros": {
+        "-d": "Delay entre atualizações em segundos",
+        "-p": "Monitora apenas processos com esses PIDs",
+        "-u": "Mostra apenas processos de um usuário"
+      },
+      "exemplo": "top\ntop -u www-data  # Mostra apenas processos do usuário www-data"
+    },
+    "ps": {
+      "significado": "Report a snapshot of current processes",
+      "descricao": "Lista processos ativos. Sem argumentos mostra apenas processos do terminal atual.",
+      "parametros": {
+        "aux": "Mostra todos os processos em formato detalhado",
+        "-ef": "Lista completa de processos",
+        "-u": "Filtra por usuário"
+      },
+      "exemplo": "ps aux | grep nginx  # Encontra processos do nginx\nps -ef --forest  # Mostra hierarquia de processos"
+    },
+    "df": {
+      "significado": "Report file system disk space usage",
+      "descricao": "Mostra espaço usado e disponível nos sistemas de arquivos montados.",
+      "parametros": {
+        "-h": "Mostra tamanhos em formato legível (KB, MB, GB)",
+        "-T": "Mostra tipo do sistema de arquivos"
+      },
+      "exemplo": "df -h  # Espaço em disco legível\ndf -h /home  # Espaço na partição /home"
+    },
+    "free": {
+      "significado": "Display amount of free and used memory in the system",
+      "descricao": "Mostra uso de memória RAM e swap.",
+      "parametros": {
+        "-h": "Mostra em formato legível",
+        "-m": "Mostra em megabytes",
+        "-g": "Mostra em gigabytes"
+      },
+      "exemplo": "free -h  # Memória em formato legível\nfree -m  # Memória em MB"
+    },
+    "systemctl": {
+      "significado": "Control the systemd system and service manager",
+      "descricao": "Principal comando para gerenciar serviços no Linux moderno (com systemd).",
+      "parametros": {
+        "start": "Inicia um serviço",
+        "stop": "Para um serviço",
+        "restart": "Reinicia um serviço",
+        "status": "Mostra status do serviço",
+        "enable": "Habilita inicialização automática",
+        "disable": "Desabilita inicialização automática"
+      },
+      "exemplo": "systemctl status nginx\nsystemctl restart apache2\nsystemctl enable docker"
+    },
+    "journalctl": {
+      "significado": "Query the systemd journal",
+      "descricao": "Visualiza e gerencia logs do systemd. Substitui o antigo syslog em sistemas modernos.",
+      "parametros": {
+        "-u": "Filtra por unidade/serviço",
+        "-f": "Segue novos logs (como tail -f)",
+        "--since": "Mostra logs a partir de (ex: --since \"1 hour ago\")",
+        "-p": "Filtra por prioridade (ex: -p err)"
+      },
+      "exemplo": "journalctl -u nginx -f  # Monitora logs do nginx\njournalctl --since \"2023-01-01\" --until \"2023-01-02\""
+    },
+    "uptime": {
+      "significado": "Show how long the system has been running",
+      "descricao": "Mostra o tempo desde o último boot e carga média.",
+      "parametros": {},
+      "exemplo": "uptime"
+    },
+    "kill": {
+      "significado": "Send signal to process",
+      "descricao": "Envia sinais (como SIGTERM ou SIGKILL) para terminar processos.",
+      "parametros": {
+        "-9": "Força término imediato (SIGKILL)"
+      },
+      "exemplo": "kill 1234  # Termina processo PID 1234\nkill -9 1234  # Força término"
+    },
+    "htop": {
+      "significado": "Interactive process viewer",
+      "descricao": "Alternativa ao top, mais amigável e colorida.",
+      "parametros": {},
+      "exemplo": "htop"
+    },
+    "uname": {
+      "significado": "Print system information",
+      "descricao": "Mostra informações sobre o kernel e arquitetura.",
+      "parametros": {
+        "-a": "Mostra tudo"
+      },
+      "exemplo": "uname -a"
+    },
+    "mount": {
+      "significado": "Mount a filesystem",
+      "descricao": "Monta dispositivos e sistemas de arquivos.",
+      "parametros": {},
+      "exemplo": "mount /dev/sdb1 /mnt/usb"
+    },
+    "umount": {
+      "significado": "Unmount a filesystem",
+      "descricao": "Desmonta dispositivos e sistemas de arquivos.",
+      "parametros": {},
+      "exemplo": "umount /mnt/usb"
+    },
+    "passwd": {
+      "significado": "Change user password",
+      "descricao": "Altera a senha do usuário atual ou especificado.",
+      "parametros": {},
+      "exemplo": "passwd  # Altera senha do usuário atual\npasswd usuario"
+    },
+    "useradd": {
+      "significado": "Add a new user",
+      "descricao": "Cria um novo usuário no sistema.",
+      "parametros": {},
+      "exemplo": "useradd novo_usuario"
+    },
+    "usermod": {
+      "significado": "Modify user account",
+      "descricao": "Altera configurações de usuário existentes.",
+      "parametros": {},
+      "exemplo": "usermod -aG sudo usuario  # Adiciona usuário ao grupo sudo"
+    },
+    "groupadd": {
+      "significado": "Add a new group",
+      "descricao": "Cria um novo grupo no sistema.",
+      "parametros": {},
+      "exemplo": "groupadd novogrupo"
+    },
+    "shutdown": {
+      "significado": "Shutdown or reboot the system",
+      "descricao": "Desliga ou reinicia o sistema.",
+      "parametros": {
+        "-r": "Reinicia",
+        "-h": "Desliga"
+      },
+      "exemplo": "shutdown -h now\nshutdown -r +5  # Reinicia em 5 minutos"
+    },
+    "reboot": {
+      "significado": "Reboot the system",
+      "descricao": "Reinicia o sistema imediatamente.",
+      "parametros": {},
+      "exemplo": "reboot"
+    },
+    "cron": {
+      "significado": "Daemon to execute scheduled commands",
+      "descricao": "Gerencia tarefas agendadas (cron jobs).",
+      "parametros": {},
+      "exemplo": "crontab -e  # Edita tabela de agendamentos"
+    }
+  },
+  "desenvolvimento": {
+    "git": {
+      "significado": "The stupid content tracker",
+      "descricao": "Sistema de controle de versão distribuído. Essencial para desenvolvimento de software.",
+      "parametros": {
+        "clone": "Clona um repositório",
+        "pull": "Atualiza repositório local",
+        "push": "Envia alterações para o remoto",
+        "commit": "Registra alterações",
+        "checkout": "Muda de branch ou restaura arquivos",
+        "branch": "Gerencia branches",
+        "merge": "Funde branches",
+        "status": "Mostra status do repositório",
+        "log": "Mostra histórico de commits",
+        "diff": "Mostra diferenças entre versões"
+      },
+      "exemplo": "git clone https://github.com/user/repo.git\ngit commit -m \"mensagem\"\ngit checkout -b nova-branch"
+    },
+    "docker": {
+      "significado": "A self-sufficient runtime for containers",
+      "descricao": "Plataforma para desenvolver, enviar e executar aplicações em containers.",
+      "parametros": {
+        "ps": "Lista containers ativos",
+        "run": "Executa um novo container",
+        "build": "Constrói imagem a partir de Dockerfile",
+        "logs": "Mostra logs de um container",
+        "exec": "Executa comando em container rodando",
+        "stop": "Para container",
+        "rm": "Remove container",
+        "images": "Lista imagens disponíveis",
+        "pull": "Baixa imagem do repositório",
+        "push": "Envia imagem para repositório"
+      },
+      "exemplo": "docker run -d -p 80:80 nginx\ndocker exec -it container_id bash\ndocker stop container_id"
+    },
+    "npm": {
+      "significado": "JavaScript package manager",
+      "descricao": "Gerenciador de pacotes para Node.js. Usado para instalar bibliotecas JavaScript.",
+      "parametros": {
+        "install": "Instala dependências",
+        "start": "Inicia aplicação",
+        "run": "Executa script definido em package.json",
+        "update": "Atualiza pacotes",
+        "uninstall": "Remove pacote",
+        "init": "Cria novo package.json",
+        "list": "Lista pacotes instalados",
+        "outdated": "Mostra pacotes desatualizados",
+        "cache": "Gerencia cache do npm",
+        "config": "Configurações do npm"
+      },
+      "exemplo": "npm install express\nnpm start\nnpm uninstall pacote"
+    },
+    "python": {
+      "significado": "Run Python interpreter",
+      "descricao": "Interpreta código Python.",
+      "parametros": {
+        "-m": "Executa módulo como script",
+        "-c": "Executa comando passado como string",
+        "-V": "Mostra versão"
+      },
+      "exemplo": "python script.py\npython -m http.server\npython -V"
+    },
+    "javac": {
+      "significado": "Java compiler",
+      "descricao": "Compila código fonte Java.",
+      "parametros": {},
+      "exemplo": "javac MeuPrograma.java"
+    },
+    "java": {
+      "significado": "Run Java application",
+      "descricao": "Executa programa Java compilado.",
+      "parametros": {},
+      "exemplo": "java MeuPrograma"
+    },
+    "make": {
+      "significado": "Build automation tool",
+      "descricao": "Compila e constrói projetos a partir de um Makefile.",
+      "parametros": {
+        "-j": "Executa múltiplas tarefas em paralelo"
+      },
+      "exemplo": "make\nmake -j4"
+    },
+    "gdb": {
+      "significado": "GNU Debugger",
+      "descricao": "Depurador para programas C/C++ e outros.",
+      "parametros": {},
+      "exemplo": "gdb ./programa"
+    },
+    "vim": {
+      "significado": "Text editor",
+      "descricao": "Editor de texto avançado para terminal.",
+      "parametros": {},
+      "exemplo": "vim arquivo.txt"
+    },
+    "emacs": {
+      "significado": "Text editor",
+      "descricao": "Editor de texto e ambiente extensível.",
+      "parametros": {},
+      "exemplo": "emacs arquivo.txt"
+    },
+    "gcc": {
+      "significado": "GNU C Compiler",
+      "descricao": "Compila arquivos C em executáveis.",
+      "parametros": {
+        "-o": "Nome do executável",
+        "-Wall": "Ativa todos os warnings"
+      },
+      "exemplo": "gcc -Wall programa.c -o programa"
+    },
+    "pytest": {
+      "significado": "Python testing framework",
+      "descricao": "Executa testes automatizados em Python.",
+      "parametros": {},
+      "exemplo": "pytest tests/"
+    }
+  },
+  "atalhos": {
+    "ctrl_c": {
+      "significado": "Interromper processo",
+      "descricao": "Envia sinal SIGINT para interromper o processo em execução no terminal.",
+      "parametros": {},
+      "exemplo": "Pressione Ctrl+C para parar um comando demorado"
+    },
+    "ctrl_z": {
+      "significado": "Suspender processo",
+      "descricao": "Envia sinal SIGTSTP para suspender o processo atual e retornar ao shell.",
+      "parametros": {},
+      "exemplo": "Pressione Ctrl+Z para pausar um processo e usar 'fg' para retomar"
+    },
+    "ctrl_d": {
+      "significado": "Fim da transmissão (EOF)",
+      "descricao": "Envia caractere EOF (End Of File), frequentemente usado para sair de shells ou terminar entrada de dados.",
+      "parametros": {},
+      "exemplo": "Pressione Ctrl+D para sair do terminal ou terminar entrada interativa"
+    },
+    "ctrl_r": {
+      "significado": "Busca reversa no histórico",
+      "descricao": "Permite pesquisar comandos anteriores no histórico do terminal.",
+      "parametros": {},
+      "exemplo": "Pressione Ctrl+R e digite parte do comando para buscar"
+    },
+    "ctrl_a": {
+      "significado": "Início da linha",
+      "descricao": "Move o cursor para o início da linha no terminal.",
+      "parametros": {},
+      "exemplo": "Use Ctrl+A para ir rápido ao início da linha"
+    },
+    "ctrl_e": {
+      "significado": "Fim da linha",
+      "descricao": "Move o cursor para o fim da linha no terminal.",
+      "parametros": {},
+      "exemplo": "Use Ctrl+E para ir rápido ao fim da linha"
+    },
+    "ctrl_l": {
+      "significado": "Limpar tela",
+      "descricao": "Limpa a tela do terminal, semelhante ao comando clear.",
+      "parametros": {},
+      "exemplo": "Pressione Ctrl+L para limpar o terminal"
+    },
+    "tab": {
+      "significado": "Auto-completar",
+      "descricao": "Auto-completa comandos, nomes de arquivos e diretórios.",
+      "parametros": {},
+      "exemplo": "Digite parte do comando e pressione Tab para completar"
+    },
+    "alt_f": {
+      "significado": "Avançar uma palavra",
+      "descricao": "Move o cursor uma palavra para frente.",
+      "parametros": {},
+      "exemplo": "Use Alt+F para mover cursor palavra a palavra"
+    },
+    "alt_b": {
+      "significado": "Voltar uma palavra",
+      "descricao": "Move o cursor uma palavra para trás.",
+      "parametros": {},
+      "exemplo": "Use Alt+B para mover cursor palavra a palavra"
+    },
+    "ctrl_u": {
+      "significado": "Apagar da linha até o início",
+      "descricao": "Apaga tudo da posição atual do cursor até o início da linha.",
+      "parametros": {},
+      "exemplo": "Use Ctrl+U para apagar parte da linha rapidamente"
+    },
+    "ctrl_k": {
+      "significado": "Apagar da linha até o fim",
+      "descricao": "Apaga tudo da posição atual do cursor até o fim da linha.",
+      "parametros": {},
+      "exemplo": "Use Ctrl+K para apagar parte da linha rapidamente"
+    },
+    "ctrl_w": {
+      "significado": "Apagar palavra anterior",
+      "descricao": "Apaga a palavra antes do cursor.",
+      "parametros": {},
+      "exemplo": "Use Ctrl+W para apagar palavras rapidamente"
+    },
+    "ctrl_y": {
+      "significado": "Colar texto apagado",
+      "descricao": "Restaura texto apagado com Ctrl+U, Ctrl+K ou Ctrl+W.",
+      "parametros": {},
+      "exemplo": "Use Ctrl+Y para colar texto removido"
+    }
+  }
+}
