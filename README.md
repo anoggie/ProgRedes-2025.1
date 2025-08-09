@@ -3,6 +3,7 @@ Este repositório tem como objetivo guardar todos os exercícios feitos pela dup
 
 📂 ProgRedes-2025.1  
 L 📂 CIDR_calc | Calculadora de sub-rede  
+L 📂 Lunix-Bot | Telegram Bot de comandos linux  
 L 📂 Termooo | Jogo Termo feito em Python  
 L 📂 XOR_Encrypter | Criptografador de texto utilizando operação XOR  
 L 📂 Nonce_finder | Mineador(?)  
